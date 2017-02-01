@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases Basicas\TCategoria.vb" />
+    <Compile Include="Clases Basicas\TSubCategoria.vb" />
     <Compile Include="Clases Comunes\Common.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

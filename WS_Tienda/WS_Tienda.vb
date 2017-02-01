@@ -6,7 +6,22 @@ Public Class WS_Tienda
     Implements IWS_Tienda
 
     Public Function SelectCategorias(pEmpId As Integer) As WS_Respuesta Implements IWS_Tienda.SelectCategorias
-        Dim categoria As New TCategoria(pEmpId)
+        Dim respuesta As New WS_Respuesta
+        Try
+            Dim categoria As New TCategoria(pEmpId)
+            Dim mensaje As String = ""
+            mensaje = categoria.SelectTable("categoria")
+            Verifica_Mensaje(mensaje)
+
+            respuesta.MensajeRespuesta = mensaje
+            respuesta.Datos = JsonSerializer(Of DataTable)(categoria.Data.Tables("categoria"))
+            Return respuesta
+        Catch ex As Exception
+            respuesta.MensajeRespuesta = ex.Message
+            respuesta.Datos = ""
+            Return respuesta
+        End Try
+
     End Function
 
     Public Function SelectCategoriasPrincipales(pEmpId As Integer) As WS_Respuesta Implements IWS_Tienda.SelectCategoriasPrincipales
